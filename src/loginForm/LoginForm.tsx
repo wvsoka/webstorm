@@ -43,6 +43,7 @@ function LoginForm() {
             id="username"
             label="username"
             variant="standard"
+            color="secondary"
             name="username"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -54,6 +55,7 @@ function LoginForm() {
             type="password"
             label="password"
             variant="standard"
+            color="secondary"
             name="password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -62,6 +64,7 @@ function LoginForm() {
           />
           <Button
             variant="contained"
+            color="secondary"
             type="submit"
             form="signForm"
             disabled={!(formik.isValid && formik.dirty)}
