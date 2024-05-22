@@ -3,7 +3,8 @@ import './LoginForm.css';
 import { Formik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../homePage/Navbar'; // Import useNavigate
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function LoginForm() {
   const onSubmit = useCallback(
     (values: { username: string; password: string }, formik: any) => {
       console.log(values);
-      navigate('/books');
+      navigate('/book/getAll');
     },
     [navigate],
   );
@@ -28,55 +29,58 @@ function LoginForm() {
   );
 
   return (
-    <Formik
-      initialValues={{ username: '', password: '' }}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-      validateOnChange
-      validateOnBlur
-    >
-      {(formik: any) => (
-        <form
-          className="loginForm"
-          id="signForm"
-          onSubmit={formik.handleSubmit}
-          noValidate
-        >
-          <TextField
-            id="username"
-            label="username"
-            variant="standard"
-            color="secondary"
-            name="username"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.username && formik.errors.username}
-            helperText={formik.touched.username && formik.errors.username}
-          />
-          <TextField
-            id="password"
-            type="password"
-            label="password"
-            variant="standard"
-            color="secondary"
-            name="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.password && formik.errors.password}
-            helperText={formik.touched.password && formik.errors.password}
-          />
-          <Button
-            variant="contained"
-            color="secondary"
-            type="submit"
-            form="signForm"
-            disabled={!(formik.isValid && formik.dirty)}
+    <div>
+      <Navbar />
+      <Formik
+        initialValues={{ username: '', password: '' }}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        validateOnChange
+        validateOnBlur
+      >
+        {(formik: any) => (
+          <form
+            className="loginForm"
+            id="signForm"
+            onSubmit={formik.handleSubmit}
+            noValidate
           >
-            Zaloguj się
-          </Button>
-        </form>
-      )}
-    </Formik>
+            <TextField
+              id="username"
+              label="username"
+              variant="standard"
+              color="secondary"
+              name="username"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.username && formik.errors.username}
+              helperText={formik.touched.username && formik.errors.username}
+            />
+            <TextField
+              id="password"
+              type="password"
+              label="password"
+              variant="standard"
+              color="secondary"
+              name="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.password && formik.errors.password}
+              helperText={formik.touched.password && formik.errors.password}
+            />
+            <Button
+              variant="contained"
+              color="secondary"
+              type="submit"
+              form="signForm"
+              disabled={!(formik.isValid && formik.dirty)}
+            >
+              Zaloguj się
+            </Button>
+          </form>
+        )}
+      </Formik>
+    </div>
   );
 }
 

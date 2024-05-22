@@ -6,31 +6,34 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField'; // Dodanie importu TextField dla searchbara
+import TextField from '@mui/material/TextField';
 import { BookData, Book } from './Books';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
 const BookTable: React.FC = () => {
   const [searchTerm, setSearchTerm] = React.useState(''); // Stan dla przechowywania wartości wyszukiwania
-  const books: Book[] = BookData(); // Pobieranie danych książek
+  const books: Book[] = BookData();
 
   const navigate = useNavigate();
   const handleLogout = () => {
-    console.log('Wylogowywanie...');
+    console.log('Log out...');
     navigate('/login');
   };
 
-  // Filtracja książek na podstawie wyszukiwanej frazy
-  const filteredBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredBooks = books.filter(
+    (book) =>
+      book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.publisher.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.yearOfPublish.toString().includes(searchTerm),
   );
 
   return (
     <>
       <TextField
         id="standard-basic"
-        label="Wyszukaj książkę..."
+        label="Search..."
         variant="standard"
         color="secondary"
         fullWidth

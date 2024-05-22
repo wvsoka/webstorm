@@ -1,0 +1,43 @@
+.homepage-container {
+    padding: 20px;
+    background: pink;
+    border-radius: 10px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro h1 {
+    font-size: 40px;
+    color: #d30880;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 18px;
+    color: #000000;
+}
+
+.sign-in {
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+}
+
+.sign-in h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.sign-in .sign-in-link {
+    font-size: 18px;
+    color: #d30880;
+    text-decoration: none;
+}
+
+.sign-in .sign-in-link:hover {
+    text-decoration: underline;
+}
+
