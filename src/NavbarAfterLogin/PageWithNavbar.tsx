@@ -3,7 +3,7 @@ import NavbarAfterLogin from './NavbarAfterLogin';
 
 type Props = {
   children: React.ReactNode;
-  role: string; // Dodajemy rolę jako wymaganą właściwość
+  role: string;
 };
 
 const PageWithNavbar: React.FC<Props> = ({ children, role }) => {

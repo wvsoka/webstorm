@@ -13,6 +13,7 @@ import NavbarAfterLogin from '../NavbarAfterLogin/NavbarAfterLogin';
 import { useEffect, useState } from 'react';
 import { BookDto } from '../api/dto/book.dto';
 import { useApi } from '../api/ApiProvider';
+import { useTranslation } from 'react-i18next';
 
 const BookTable: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,6 +22,7 @@ const BookTable: React.FC = () => {
   //const [error, setError] = useState<string | null>(null);
   const apiClient = useApi();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     apiClient.getBooks().then((response) => {
@@ -55,7 +57,7 @@ const BookTable: React.FC = () => {
     <>
       <TextField
         id="standard-basic"
-        label="Search..."
+        label={t('Search')}
         variant="standard"
         color="secondary"
         fullWidth
@@ -66,12 +68,12 @@ const BookTable: React.FC = () => {
         <Table sx={{ minWidth: 650 }} aria-label="book table">
           <TableHead>
             <TableRow>
-              <TableCell>Title</TableCell>
-              <TableCell align="right">Author</TableCell>
-              <TableCell align="right">Publisher</TableCell>
-              <TableCell align="right">Year of Publication</TableCell>
-              <TableCell align="right">Available Copies</TableCell>
-              <TableCell align="right">ISBN</TableCell>
+              <TableCell>{t('Title')}</TableCell>
+              <TableCell align="right">{t('Author')}</TableCell>
+              <TableCell align="right">{t('Publisher')}</TableCell>
+              <TableCell align="right">{t('Year of publication')}</TableCell>
+              <TableCell align="right">{t('Available copies')}</TableCell>
+              <TableCell align="right">{t('ISBN')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -98,7 +100,7 @@ const BookTable: React.FC = () => {
         onClick={() => navigate('/home')}
         color="secondary"
       >
-        Back
+        {t('Back')}
       </Button>
     </>
   );

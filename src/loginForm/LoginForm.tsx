@@ -5,9 +5,12 @@ import { Button, TextField } from '@mui/material';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../homePage/Navbar';
-import { useApi } from '../api/ApiProvider'; // Import useNavigate
+import { useApi } from '../api/ApiProvider';
+import { useTranslation } from 'react-i18next'; // Import useNavigate
 
 function LoginForm() {
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
   const apiClient = useApi();
 
@@ -17,7 +20,7 @@ function LoginForm() {
         if (response.success) {
           navigate('/home');
         } else {
-          formik.setFieldError('password', 'Invalid username or password');
+          formik.setFieldError('password', t('Invalid'));
         }
       });
       //navigate('/book/getAll');
@@ -27,11 +30,11 @@ function LoginForm() {
   const validationSchema = useMemo(
     () =>
       yup.object().shape({
-        login: yup.string().required('Login is required'),
+        login: yup.string().required(t('RequiredLogin')),
         password: yup
           .string()
-          .required('Password is required')
-          .min(5, 'Password is too short'),
+          .required(t('RequiredPassword'))
+          .min(5, t('TooShort')),
       }),
     [],
   );
@@ -55,10 +58,10 @@ function LoginForm() {
           >
             <TextField
               id="login"
-              label="login"
+              label={t('login')}
               variant="standard"
               color="secondary"
-              name="login"
+              name={t('login')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.login && formik.errors.login}
@@ -67,10 +70,10 @@ function LoginForm() {
             <TextField
               id="password"
               type="password"
-              label="password"
+              label={t('password')}
               variant="standard"
               color="secondary"
-              name="password"
+              name={t('password')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.password && formik.errors.password}
@@ -83,7 +86,7 @@ function LoginForm() {
               form="signForm"
               disabled={!(formik.isValid && formik.dirty)}
             >
-              Zaloguj się
+              {t('Log in')}
             </Button>
           </form>
         )}

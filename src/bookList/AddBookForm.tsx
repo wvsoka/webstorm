@@ -2,7 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useApi } from '../api/ApiProvider';
 import './AddBookForm.css';
-import { useNavigate } from 'react-router-dom'; // Zaimportuj plik CSS
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const AddBookForm = () => {
   const apiClient = useApi();
@@ -19,6 +20,7 @@ const AddBookForm = () => {
   });
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { t, i18n } = useTranslation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,11 +31,9 @@ const AddBookForm = () => {
     e.preventDefault();
     try {
       await apiClient.addBook(bookData);
-      setSuccessMessage('Book added successfully'); // Ustaw komunikat sukcesu
+      setSuccessMessage(t('BookAddedSuccess'));
     } catch (error) {
-      setError(
-        'Wystąpił błąd podczas dodawania książki. Spróbuj ponownie później.',
-      );
+      setError(t('Error'));
     }
   };
 
@@ -43,71 +43,71 @@ const AddBookForm = () => {
       {successMessage && <p className="success">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="isbn">ISBN</label>
+          <label htmlFor="isbn">{t('ISBN')}</label>
           <input
             type="text"
             id="isbn"
             name="isbn"
-            placeholder="ISBN"
+            placeholder={t('ISBN')}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">{t('Title')}</label>
           <input
             type="text"
             id="title"
             name="title"
-            placeholder="Title"
+            placeholder={t('Title')}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="author">Author</label>
+          <label htmlFor="author">{t('Author')}</label>
           <input
             type="text"
             id="author"
             name="author"
-            placeholder="Author"
+            placeholder={t('Author')}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="publisher">Publisher</label>
+          <label htmlFor="publisher">{t('Publisher')}</label>
           <input
             type="text"
             id="publisher"
             name="publisher"
-            placeholder="Publisher"
+            placeholder={t('Publisher')}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="publishYear">Publish Year</label>
+          <label htmlFor="publishYear">{t('Year of publication')}</label>
           <input
             type="text"
             id="publishYear"
             name="publishYear"
-            placeholder="Publish Year"
+            placeholder={t('Year of publication')}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="availableCopies">Available Copies</label>
+          <label htmlFor="availableCopies">{t('Available copies')}</label>
           <input
             type="text"
             id="availableCopies"
             name="availableCopies"
-            placeholder="Available Copies"
+            placeholder={t('Available copies')}
             onChange={handleChange}
           />
         </div>
         <div className="button-group">
-          <button type="submit">Add Book</button>
+          <button type="submit">{t('Add Book')}</button>
         </div>
       </form>
       <div className="button-group">
-        <button onClick={() => navigate('/home')}>Back</button>
+        <button onClick={() => navigate('/home')}>{t('Back')}</button>
       </div>
     </div>
   );

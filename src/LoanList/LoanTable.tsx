@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useApi } from '../api/ApiProvider';
 import { LoanDto } from '../api/dto/loan.dto';
 import PageWithNavbar from '../NavbarAfterLogin/PageWithNavbar';
+import { useTranslation } from 'react-i18next';
 
 const LoanTable: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,6 +22,7 @@ const LoanTable: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const apiClient = useApi();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     apiClient.getLoans().then((response) => {
@@ -81,7 +83,7 @@ const LoanTable: React.FC = () => {
     <>
       <TextField
         id="standard-basic"
-        label="Search..."
+        label={t('Search')}
         variant="standard"
         color="secondary"
         fullWidth
@@ -92,11 +94,11 @@ const LoanTable: React.FC = () => {
         <Table sx={{ minWidth: 650 }} aria-label="loan table">
           <TableHead>
             <TableRow>
-              <TableCell>Loan Start Date</TableCell>
-              <TableCell align="right">Loan End Date</TableCell>
-              <TableCell align="right">Book Return Date</TableCell>
-              <TableCell align="right">User ID</TableCell>
-              <TableCell align="right">Book ID</TableCell>
+              <TableCell>{t('Loan Start Date')}</TableCell>
+              <TableCell align="right">{t('Loan End Date')}</TableCell>
+              <TableCell align="right">{t('Book Return Date')}</TableCell>
+              <TableCell align="right">{t('User ID')}</TableCell>
+              <TableCell align="right">{t('Book ID')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -126,7 +128,7 @@ const LoanTable: React.FC = () => {
         onClick={() => navigate('/home')}
         color="secondary"
       >
-        Back
+        {t('Back')}
       </Button>
     </>
   );

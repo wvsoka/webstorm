@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useApi } from '../api/ApiProvider';
 import { useNavigate } from 'react-router-dom';
 import './AddLoanFrom.css';
+import { useTranslation } from 'react-i18next';
 
 const AddLoanForm = () => {
   const apiClient = useApi();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const [loanData, setLoanData] = useState({
     id: 1,
@@ -36,7 +38,7 @@ const AddLoanForm = () => {
       await apiClient.addLoan(loanData);
       navigate('/loan/getAll');
     } catch (error) {
-      setError('Error occurred.');
+      setError(t('Error'));
     }
   };
 
@@ -47,39 +49,39 @@ const AddLoanForm = () => {
         <input
           type="date"
           name="loanStartDate"
-          placeholder="Loan Start Date"
+          placeholder={t('Loan Start Date')}
           onChange={handleChange}
         />
         <input
           type="date"
           name="loanEndDate"
-          placeholder="Loan End Date"
+          placeholder={t('Loan End Date')}
           onChange={handleChange}
         />
         <input
           type="date"
           name="bookReturnDate"
-          placeholder="Book Return Date"
+          placeholder={t('Book Return Date')}
           onChange={handleChange}
         />
         <input
           type="number"
           name="userLoanId"
-          placeholder="User ID"
+          placeholder={t('User ID')}
           onChange={handleChange}
         />
         <input
           type="number"
           name="bookLoanId"
-          placeholder="Book ID"
+          placeholder={t('Book ID')}
           onChange={handleChange}
         />
         <div className="button-group">
-          <button type="submit">Add Loan</button>
+          <button type="submit">{t('Add Loan')}</button>
         </div>
       </form>
       <div className="button-group">
-        <button onClick={() => navigate('/home')}>Back</button>
+        <button onClick={() => navigate('/home')}>{t('Back')}</button>
       </div>
     </div>
   );
