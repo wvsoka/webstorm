@@ -39,3 +39,18 @@
 .navbar a:hover::before {
     width: 100%;
 }
+
+.language-switcher {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    align-items: end;
+}
+
+.language-switcher button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 14px;
+}
