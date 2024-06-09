@@ -89,4 +89,48 @@ export class LibraryClient {
       };
     }
   }
+
+  public async addBook(data: BookDto): Promise<ClientResponse<BookDto | null>> {
+    try {
+      const response: AxiosResponse<BookDto> = await this.client.post(
+        '/book/add',
+        data,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async addLoan(
+    loanData: LoanDto,
+  ): Promise<ClientResponse<LoanDto | null>> {
+    try {
+      const response: AxiosResponse<LoanDto> = await this.client.post(
+        '/loan/add',
+        loanData,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
 }
