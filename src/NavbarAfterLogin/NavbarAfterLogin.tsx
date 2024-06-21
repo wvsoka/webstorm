@@ -21,6 +21,7 @@ const NavbarAfterLogin: React.FC<Props> = ({ role }) => {
             <Link to="/loan/getAll">{t('Loans')}</Link>
             <Link to="/book/add">{t('Add Book')}</Link>
             <Link to="/loan/add">{t('Add Loan')}</Link>
+            <Link to="/user/add">{'Add User'}</Link>
           </>
         )}
       </nav>

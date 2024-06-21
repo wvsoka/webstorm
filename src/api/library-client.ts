@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { LoginDto, LoginResponseDto } from './dto/login.dto';
 import { BookDto } from './dto/book.dto';
 import { LoanDto } from './dto/loan.dto';
+import { UserDto } from './dto/user.dto';
 
 type ClientResponse<T> = {
   success: boolean;
@@ -118,6 +119,29 @@ export class LibraryClient {
       const response: AxiosResponse<LoanDto> = await this.client.post(
         '/loan/add',
         loanData,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async addUser(
+    userData: UserDto,
+  ): Promise<ClientResponse<UserDto | null>> {
+    try {
+      const response: AxiosResponse<UserDto> = await this.client.post(
+        '/users/add',
+        userData,
       );
       return {
         success: true,

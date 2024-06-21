@@ -41,8 +41,8 @@ const LoanTable: React.FC = () => {
           bookReturnDate: loan.bookReturnDate
             ? new Date(loan.bookReturnDate)
             : undefined,
-          userLoan: loan.userLoan?.id,
-          bookLoan: loan.bookLoan?.id,
+          userLoan: loan.userLoan,
+          bookLoan: loan.bookLoan,
         }));
         console.log(convertedLoans);
         setLoans(convertedLoans);
@@ -57,10 +57,10 @@ const LoanTable: React.FC = () => {
   };
 
   const formatTimestamp = (timestamp: Date | undefined): string => {
-    if (!timestamp) return ''; // Handle undefined case
+    if (!timestamp) return '';
 
     const year = timestamp.getFullYear();
-    const month = String(timestamp.getMonth() + 1).padStart(2, '0'); // +1, bo getMonth() zwraca indeks miesiąca, a nie numer miesiąca
+    const month = String(timestamp.getMonth() + 1).padStart(2, '0');
     const day = String(timestamp.getDate()).padStart(2, '0');
 
     return `${year}-${month}-${day}`;
@@ -117,7 +117,7 @@ const LoanTable: React.FC = () => {
                   {formatTimestamp(loan.bookReturnDate)}
                 </TableCell>
                 <TableCell align="right">{loan.userLoan?.toString()}</TableCell>
-                <TableCell align="right">{loan.bookLoan?.id}</TableCell>
+                <TableCell align="right">{loan.bookLoan?.toString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
