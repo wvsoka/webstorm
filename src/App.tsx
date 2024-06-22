@@ -13,6 +13,7 @@ import AddLoanForm from './LoanList/AddLoanForm';
 import i18n from './i18n';
 import { I18nextProvider } from 'react-i18next';
 import AddUser from './users/AddUser';
+import GetOneBook from './bookList/GetOneBook';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path={'/book/add'} element={<AddBookForm />} />
           <Route path={'/loan/add'} element={<AddLoanForm />} />
           <Route path={'/user/add'} element={<AddUser />} />
+          <Route path={'/book/getOne'} element={<GetOneBook />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </ApiProvider>

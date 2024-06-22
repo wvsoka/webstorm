@@ -72,10 +72,12 @@ export class LibraryClient {
     }
   }
 
-  public async getLoans(): Promise<ClientResponse<LoanDto | null>> {
+  public async addBook(data: BookDto): Promise<ClientResponse<BookDto | null>> {
     try {
-      const response: AxiosResponse<LoanDto> =
-        await this.client.get('/loan/getAll');
+      const response: AxiosResponse<BookDto> = await this.client.post(
+        '/book/add',
+        data,
+      );
       return {
         success: true,
         data: response.data,
@@ -91,12 +93,52 @@ export class LibraryClient {
     }
   }
 
-  public async addBook(data: BookDto): Promise<ClientResponse<BookDto | null>> {
+  public async getBookById(
+    bookId: number,
+  ): Promise<ClientResponse<BookDto | null>> {
     try {
-      const response: AxiosResponse<BookDto> = await this.client.post(
-        '/book/add',
-        data,
+      const response: AxiosResponse<BookDto> = await this.client.get(
+        `/book/getBook/${bookId}`,
       );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async deleteBook(bookId: number): Promise<ClientResponse<string>> {
+    try {
+      const response: AxiosResponse<string> = await this.client.delete(
+        `/book/delete/${bookId}`,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: axiosError.response?.data.message || 'Failed to delete book',
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async getLoans(): Promise<ClientResponse<LoanDto | null>> {
+    try {
+      const response: AxiosResponse<LoanDto> =
+        await this.client.get('/loan/getAll');
       return {
         success: true,
         data: response.data,

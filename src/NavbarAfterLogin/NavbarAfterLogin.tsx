@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarAfterLogin.css';
 import { useTranslation } from 'react-i18next';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+
 type Props = {
   role: string | null;
 };
@@ -16,6 +18,7 @@ const NavbarAfterLogin: React.FC<Props> = ({ role }) => {
       </Link>
       <nav className="navbar">
         <Link to="/book/getAll">{t('Books')}</Link>
+        <Link to="/book/getOne">{'Search book'}</Link>
         {role === 'ROLE_LIBRARIAN' && (
           <>
             <Link to="/loan/getAll">{t('Loans')}</Link>
