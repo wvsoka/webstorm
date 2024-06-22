@@ -140,7 +140,7 @@ export class LibraryClient {
   ): Promise<ClientResponse<UserDto | null>> {
     try {
       const response: AxiosResponse<UserDto> = await this.client.post(
-        '/users/add',
+        '/user/add',
         userData,
       );
       return {

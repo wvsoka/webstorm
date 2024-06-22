@@ -9,7 +9,7 @@ const AddLoanForm = () => {
   const { t, i18n } = useTranslation();
 
   const [userData, setUserData] = useState({
-    id: 1,
+    id: 0,
     login: '',
     password: '',
     role: '',
