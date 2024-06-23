@@ -177,6 +177,70 @@ export class LibraryClient {
     }
   }
 
+  public async deleteLoan(
+    loanId: number,
+  ): Promise<ClientResponse<LoanDto | null>> {
+    try {
+      const response: AxiosResponse<LoanDto> = await this.client.delete(
+        `/loan/delete/${loanId}`,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async updateBookReturnDate(
+    loanId: number,
+    date: string,
+  ): Promise<ClientResponse<LoanDto | null>> {
+    try {
+      const response: AxiosResponse<LoanDto> = await this.client.post(
+        `/loan/returnDate/${loanId}/${date}`,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async getMyLoans(): Promise<ClientResponse<LoanDto[] | null>> {
+    try {
+      const response: AxiosResponse<LoanDto[]> =
+        await this.client.get('/loan/getMyLoans');
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: [],
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
+
   public async addUser(
     userData: UserDto,
   ): Promise<ClientResponse<UserDto | null>> {

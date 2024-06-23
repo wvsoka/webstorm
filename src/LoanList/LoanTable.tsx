@@ -75,6 +75,36 @@ const LoanTable: React.FC = () => {
       loan.bookLoan?.toString().includes(searchTerm),
   );
 
+  const handleDelete = async (loanId: number) => {
+    const response = await apiClient.deleteLoan(loanId);
+    if (response.success) {
+      setLoans(loans.filter((loan) => loan.id !== loanId));
+    } else {
+      alert(response.data || 'Failed to delete loan');
+    }
+  };
+
+  const handleEditReturnDate = async (loanId: number) => {
+    const newDate = prompt('Enter the new return date (YYYY-MM-DD):');
+    if (!newDate) return;
+    const formattedDate = formatTimestamp(new Date(newDate));
+    const response = await apiClient.updateBookReturnDate(
+      loanId,
+      formattedDate,
+    );
+    if (response.success) {
+      setLoans(
+        loans.map((loan) =>
+          loan.id === loanId
+            ? { ...loan, bookReturnDate: new Date(newDate) }
+            : loan,
+        ),
+      );
+    } else {
+      alert(response.data || 'Failed to update return date');
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -99,6 +129,9 @@ const LoanTable: React.FC = () => {
               <TableCell align="right">{t('Book Return Date')}</TableCell>
               <TableCell align="right">{t('User ID')}</TableCell>
               <TableCell align="right">{t('Book ID')}</TableCell>
+              <TableCell align="right" style={{ width: '150px' }}>
+                {'ACTION'}
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -118,6 +151,24 @@ const LoanTable: React.FC = () => {
                 </TableCell>
                 <TableCell align="right">{loan.userLoan?.toString()}</TableCell>
                 <TableCell align="right">{loan.bookLoan?.toString()}</TableCell>
+                <TableCell align="right">
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => handleDelete(loan.id as number)}
+                    >
+                      {'Delete'}
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => handleEditReturnDate(loan.id as number)}
+                    >
+                      {'Return Date'}
+                    </Button>
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
