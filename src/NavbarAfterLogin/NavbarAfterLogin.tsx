@@ -18,15 +18,15 @@ const NavbarAfterLogin: React.FC<Props> = ({ role }) => {
       </Link>
       <nav className="navbar">
         <Link to="/book/getAll">{t('Books')}</Link>
-        <Link to="/book/getOne">{'Search book'}</Link>
-        <Link to="/loan/getMyLoans">{'My Loans'}</Link>
+        <Link to="/book/getOne">{t('SearchBook')}</Link>
+        <Link to="/loan/getMyLoans">{t('MyLoans')}</Link>
         {role === 'ROLE_LIBRARIAN' && (
           <>
             <Link to="/book/add">{t('Add Book')}</Link>
             <Link to="/loan/getAll">{t('Loans')}</Link>
             <Link to="/loan/add">{t('Add Loan')}</Link>
-            <Link to="/user/getAll">{'Users'}</Link>
-            <Link to="/user/add">{'Add User'}</Link>
+            <Link to="/user/getAll">{t('Users')}</Link>
+            <Link to="/user/add">{t('AddUser')}</Link>
           </>
         )}
       </nav>

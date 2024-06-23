@@ -38,5 +38,20 @@
   "User ID" : "User ID",
   "Book ID" : "Book ID",
   "Error" : "Error occurred, please try again later.",
-  "BookAddedSuccess" : "Book added successfully"
+  "BookAddedSuccess" : "Book added successfully",
+  "SearchBook" : "Search book",
+  "MyLoans" : "My Loans",
+  "Users" : "Users",
+  "AddUser" : "Add user",
+  "Enter book ID" : "Enter book ID",
+  "Search for a book" : "Search for a book",
+  "Book Details" : "Book details",
+  "Delete book" : "Delete book",
+  "Action" : "Action",
+  "Delete" : "Delete",
+  "Return Date" : "Return date",
+  "Role" : "Role",
+  "eMail" : "eMail",
+  "Full name" : "Full name",
+  "Add user" : "Add user"
 }

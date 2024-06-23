@@ -38,6 +38,20 @@
   "User ID" : "ID Użytkownika",
   "Book ID" : "ID Książki",
   "Error" : "Wystąpił błąd, spróbuj ponownie później.",
-  "BookAddedSuccess" : "Książka została pomyślnie dodana"
-
+  "BookAddedSuccess" : "Książka została pomyślnie dodana",
+  "SearchBook" : "Wyszukaj książkę",
+  "MyLoans" : "Moje wypożyczenia",
+  "Users" : "Użytkownicy",
+  "AddUser" : "Dodaj użytkownika",
+  "Enter book ID" : "Wprowadź ID książki",
+  "Search for a book" : "Wyszukaj książkę",
+  "Book Details" : "Szczegóły książki",
+  "Delete book" : "Usuń książkę",
+  "Action" : "Działania",
+  "Delete" : "Usuń",
+  "Return Date" : "Data oddania",
+  "Role" : "Rola",
+  "eMail" : "eMail",
+  "Full name" : "Imię i nazwisko",
+  "Add user" : "Dodaj użytkownika"
 }

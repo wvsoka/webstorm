@@ -130,7 +130,7 @@ const LoanTable: React.FC = () => {
               <TableCell align="right">{t('User ID')}</TableCell>
               <TableCell align="right">{t('Book ID')}</TableCell>
               <TableCell align="right" style={{ width: '150px' }}>
-                {'ACTION'}
+                {t('Action')}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -158,14 +158,14 @@ const LoanTable: React.FC = () => {
                       color="secondary"
                       onClick={() => handleDelete(loan.id as number)}
                     >
-                      {'Delete'}
+                      {t('Delete')}
                     </Button>
                     <Button
                       variant="contained"
                       color="secondary"
                       onClick={() => handleEditReturnDate(loan.id as number)}
                     >
-                      {'Return Date'}
+                      {t('Return Date')}
                     </Button>
                   </div>
                 </TableCell>

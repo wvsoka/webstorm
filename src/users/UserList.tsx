@@ -70,11 +70,11 @@ const UserList: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell align="right">{'ID'}</TableCell>
-              <TableCell align="right">{'ROLE'}</TableCell>
-              <TableCell align="right">{'EMAIL'}</TableCell>
-              <TableCell align="right">{'FULL NAME'}</TableCell>
+              <TableCell align="right">{t('Role')}</TableCell>
+              <TableCell align="right">{t('eMail')}</TableCell>
+              <TableCell align="right">{t('Full name')}</TableCell>
               <TableCell align="right" style={{ width: '150px' }}>
-                {'ACTION'}
+                {t('Action')}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -97,7 +97,7 @@ const UserList: React.FC = () => {
                       color="secondary"
                       onClick={() => handleDelete(user.id as number)}
                     >
-                      {'Delete'}
+                      {t('Delete')}
                     </Button>
                   )}
                 </TableCell>

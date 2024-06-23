@@ -51,26 +51,26 @@ const GetOneBook: React.FC = () => {
 
   return (
     <div className="container">
-      <h1>Search for a Book</h1>
+      <h1>{t('Search for a book')}</h1>
       <div className="form-group">
-        <label htmlFor="bookId">Enter book ID</label>
+        <label htmlFor="bookId">{t('Enter book ID')}</label>
         <input
           type="number"
           id="bookId"
           value={bookId}
           onChange={(e) => setBookId(Number(e.target.value))}
-          placeholder="Enter book ID"
+          placeholder={t('Enter book ID')}
         />
       </div>
       <div className="button-group">
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}>{t('Search')}</button>
       </div>
       {error && <p className="error">{error}</p>}
       {book && (
         <div className="book-details">
           <div className="book-details-header">
             <AutoStoriesIcon fontSize="large" />
-            <h2>Book Details</h2>
+            <h2>{t('Book Details')}</h2>
           </div>
           <p>
             <span>ID:</span> {book.id}
@@ -79,23 +79,23 @@ const GetOneBook: React.FC = () => {
             <span>ISBN:</span> {book.isbn}
           </p>
           <p>
-            <span>Title:</span> {book.title}
+            <span>{t('Title')}:</span> {book.title}
           </p>
           <p>
-            <span>Author:</span> {book.author}
+            <span>{t('Author')}:</span> {book.author}
           </p>
           <p>
-            <span>Publisher:</span> {book.publisher}
+            <span>{t('Publisher')}:</span> {book.publisher}
           </p>
           <p>
-            <span>Publish Year:</span> {book.publishYear}
+            <span>{t('Year of publication')}:</span> {book.publishYear}
           </p>
           <p>
-            <span>Available Copies:</span> {book.availableCopies}
+            <span>{t('Available copies')}:</span> {book.availableCopies}
           </p>
           {role === 'ROLE_LIBRARIAN' && (
             <div className="button-group">
-              <button onClick={handleDelete}>Delete Book</button>
+              <button onClick={handleDelete}>{t('Delete book')}</button>
             </div>
           )}
         </div>

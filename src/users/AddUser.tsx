@@ -40,7 +40,7 @@ const AddLoanForm = () => {
       {successMessage && <p className="success">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="login">{'Login'}</label>
+          <label htmlFor="login">{'login'}</label>
           <input
             type="text"
             name="login"
@@ -49,7 +49,7 @@ const AddLoanForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">{'Password'}</label>
+          <label htmlFor="password">{t('password')}</label>
           <input
             type="password"
             name="password"
@@ -58,11 +58,11 @@ const AddLoanForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="role">{'Role'}</label>
+          <label htmlFor="role">{t('Role')}</label>
           <input
             type="text"
             name="role"
-            placeholder={'USER_ROLE'}
+            placeholder={t('Role')}
             onChange={handleChange}
           />
         </div>
@@ -76,16 +76,16 @@ const AddLoanForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="fullName">{'Full name'}</label>
+          <label htmlFor="fullName">{t('Full name')}</label>
           <input
             type="text"
             name="fullName"
-            placeholder={'Full Name'}
+            placeholder={t('Full name')}
             onChange={handleChange}
           />
         </div>
         <div className="button-group">
-          <button type="submit">{'Add User'}</button>
+          <button type="submit">{t('Add user')}</button>
         </div>
       </form>
       <div className="button-group">

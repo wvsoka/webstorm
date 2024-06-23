@@ -61,7 +61,7 @@ function LoginForm() {
               label={t('login')}
               variant="standard"
               color="secondary"
-              name={t('login')}
+              name="login"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.login && formik.errors.login}
@@ -73,7 +73,7 @@ function LoginForm() {
               label={t('password')}
               variant="standard"
               color="secondary"
-              name={t('password')}
+              name="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.password && formik.errors.password}
