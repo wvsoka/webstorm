@@ -9,25 +9,23 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import NavbarAfterLogin from '../NavbarAfterLogin/NavbarAfterLogin';
 import { useEffect, useState } from 'react';
-import { BookDto } from '../api/dto/book.dto';
+import { UserDto } from '../api/dto/user.dto';
 import { useApi } from '../api/ApiProvider';
 import { useTranslation } from 'react-i18next';
 
-const BookTable: React.FC = () => {
+const UserList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [books, setBooks] = useState<BookDto[]>([]);
+  const [users, setUsers] = useState<UserDto[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  //const [error, setError] = useState<string | null>(null);
   const apiClient = useApi();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    apiClient.getBooks().then((response) => {
+    apiClient.getUsers().then((response) => {
       if (response.success && response.data) {
-        setBooks(
+        setUsers(
           Array.isArray(response.data) ? response.data : [response.data],
         );
       }
@@ -35,13 +33,12 @@ const BookTable: React.FC = () => {
     });
   }, [apiClient]);
 
-  const filteredBooks = books.filter(
-    (book) =>
-      book.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.author?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.publisher?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.publishYear?.toString().includes(searchTerm) ||
-      book.isbn?.toString().includes(searchTerm.toLowerCase()),
+  const filteredUsers = users.filter(
+    (user) =>
+      user.id?.toString().includes(searchTerm.toLowerCase()) ||
+      user.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.eMail?.toString().includes(searchTerm) ||
+      user.fullName?.toString().includes(searchTerm.toLowerCase()),
   );
 
   if (loading) {
@@ -60,31 +57,27 @@ const BookTable: React.FC = () => {
         style={{ marginBottom: '20px' }}
       />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="book table">
+        <Table sx={{ minWidth: 650 }} aria-label="user table">
           <TableHead>
             <TableRow>
-              <TableCell>{t('Title')}</TableCell>
-              <TableCell align="right">{t('Author')}</TableCell>
-              <TableCell align="right">{t('Publisher')}</TableCell>
-              <TableCell align="right">{t('Year of publication')}</TableCell>
-              <TableCell align="right">{t('Available copies')}</TableCell>
-              <TableCell align="right">{t('ISBN')}</TableCell>
+              <TableCell align="right">{'ID'}</TableCell>
+              <TableCell align="right">{'ROLE'}</TableCell>
+              <TableCell align="right">{'EMAIL'}</TableCell>
+              <TableCell align="right">{'FULL NAME'}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredBooks.map((book) => (
+            {filteredUsers.map((user) => (
               <TableRow
-                key={book.id}
+                key={user.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {book.title}
+                  {user.id}
                 </TableCell>
-                <TableCell align="right">{book.author}</TableCell>
-                <TableCell align="right">{book.publisher}</TableCell>
-                <TableCell align="right">{book.publishYear}</TableCell>
-                <TableCell align="right">{book.availableCopies}</TableCell>
-                <TableCell align="right">{book.isbn}</TableCell>
+                <TableCell align="right">{user.role}</TableCell>
+                <TableCell align="right">{user.eMail}</TableCell>
+                <TableCell align="right">{user.fullName}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -101,4 +94,4 @@ const BookTable: React.FC = () => {
   );
 };
 
-export default BookTable;
+export default UserList;
