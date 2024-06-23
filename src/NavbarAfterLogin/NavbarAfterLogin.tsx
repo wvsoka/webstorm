@@ -19,6 +19,7 @@ const NavbarAfterLogin: React.FC<Props> = ({ role }) => {
       <nav className="navbar">
         <Link to="/book/getAll">{t('Books')}</Link>
         <Link to="/book/getOne">{'Search book'}</Link>
+        <Link to="/loan/getMyLoans">{'My Loans'}</Link>
         {role === 'ROLE_LIBRARIAN' && (
           <>
             <Link to="/book/add">{t('Add Book')}</Link>
