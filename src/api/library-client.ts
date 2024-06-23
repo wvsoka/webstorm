@@ -218,4 +218,26 @@ export class LibraryClient {
       };
     }
   }
+
+  public async deleteUser(
+    userId: number,
+  ): Promise<ClientResponse<UserDto | null>> {
+    try {
+      const response: AxiosResponse<UserDto> = await this.client.delete(
+        `/user/delete/${userId}`,
+      );
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 0,
+      };
+    }
+  }
 }

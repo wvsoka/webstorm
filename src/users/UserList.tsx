@@ -41,6 +41,15 @@ const UserList: React.FC = () => {
       user.fullName?.toString().includes(searchTerm.toLowerCase()),
   );
 
+  const handleDelete = async (userId: number) => {
+    const response = await apiClient.deleteUser(userId);
+    if (response.success) {
+      setUsers(users.filter((user) => user.id !== userId));
+    } else {
+      alert(response.data || 'Failed to delete user');
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -64,6 +73,9 @@ const UserList: React.FC = () => {
               <TableCell align="right">{'ROLE'}</TableCell>
               <TableCell align="right">{'EMAIL'}</TableCell>
               <TableCell align="right">{'FULL NAME'}</TableCell>
+              <TableCell align="right" style={{ width: '150px' }}>
+                {'ACTION'}
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -77,7 +89,18 @@ const UserList: React.FC = () => {
                 </TableCell>
                 <TableCell align="right">{user.role}</TableCell>
                 <TableCell align="right">{user.eMail}</TableCell>
-                <TableCell align="right">{user.fullName}</TableCell>
+                <TableCell align="right">{user.fullName} </TableCell>
+                <TableCell align="right">
+                  {user.id !== undefined && (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => handleDelete(user.id as number)}
+                    >
+                      {'Delete'}
+                    </Button>
+                  )}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
